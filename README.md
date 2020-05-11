@@ -7,7 +7,7 @@ A tool that allows you to chat in any room on the game TETR.IO without going to 
 * requests
 
 ## How to run
-Simply paste your TETR.IO token into a file called "token.txt" and run!
+First, place the "resources" folder in the same directory as the script. Then, simply paste your TETR.IO token into a file called "token.txt" and run!
 
 **Note**: If you frequently keep getting disconnected, try using Python 3.8 from the Microsoft Store.
 
