@@ -5,6 +5,7 @@ A tool that allows you to chat in any room on the game TETR.IO without going to 
 * python-socketio
 * pillow
 * requests
+* websocket-client (Very important if you do not want to be disconnected after 25 seconds!)
 
 ## How to run
 First, place the "resources" folder in the same directory as the script. Then, simply paste your TETR.IO token into a file called "token.txt" and run!
