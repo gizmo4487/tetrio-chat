@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import tkinter as tk
 import socketio
 import requests
+import math
 import os
 
 handling = {"arr":"0","das":"5.4","sdf":"21"}
@@ -19,14 +20,16 @@ except FileNotFoundError:
 	newTokenFile.write("Replace this line with your TETR.IO token")
 	newTokenFile.close()
 	print("Add your TETR.IO token to the newly created file and run the program again.")
-	exit(0)
+	os._exit(0)
 headers = {'Authorization': 'Bearer ' + authToken}
 getUsername = (requests.get(url="https://tetr.io/api/users/me", headers=headers)).json()
 if(getUsername['success']==False):
 	print("Invalid token!")
-	quit()
+	os._exit(0)
 else:
 	myUsername = getUsername['user']['username']
+	myXP = getUsername['user']['xp']
+	myLevel = math.floor(((myXP/500)**0.6) + (myXP/5000) + 1)
 	
 tetrio_data = (requests.get(url="https://tetr.io/api/server/environment")).json()
 TETRIO_ENV = tetrio_data['signature']
@@ -39,10 +42,6 @@ rooms = {}
 @sio.event
 def connect():
 	print("Connected to websocket")
-	
-@sio.event
-def on_message(sio, message):
-	print(message)
 	
 @sio.event
 def connect_error():
@@ -126,7 +125,6 @@ def leave():
 		playerlabel.configure(text="Players (0)")
 	else:
 		print("You are not in a room!\n")
-	#commands()
 
 def chat(msg):
 	global inRoom
@@ -274,7 +272,7 @@ disconnectButton = ttk.Button(menuframe, text="Disconnect", command=dc).grid(col
 exitButton = ttk.Button(gameframe, text="Exit", command=leave).grid(column=1, row=1, sticky=(N,W), padx=16)
 roomLabel = ttk.Label(gameframe, text="#?????????", style='roomIDstyle.TLabel')
 roomLabel.grid(column=2, row=1,padx=240,sticky="E")
-selfLabel = ttk.Label(gameframe, text=myUsername, style='roomIDstyle.TLabel').grid(column=3,row=1,sticky="E")
+selfLabel = ttk.Label(gameframe, text=f"{myUsername}\n[{myLevel}, {getUsername['user']['league']['rank'].upper()}]", style='roomIDstyle.TLabel').grid(column=3,row=1,sticky="E")
 
 playerlabel = ttk.Label(gameframe, text="Players (0)", style='roomIDstyle.TLabel')
 playerlabel.grid(column=1,row=2,sticky="W",padx=8,pady=16)
