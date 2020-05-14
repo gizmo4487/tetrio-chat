@@ -10,7 +10,7 @@ A tool that allows you to chat in any room on the game TETR.IO without going to 
 ## How to run
 First, place the "resources" folder in the same directory as the script. Then, simply paste your TETR.IO token into a file called "token.txt" and run!
 
-**Note**: If you frequently keep getting disconnected, try using Python 3.8 from the Microsoft Store.
+**Note**: If you frequently keep getting disconnected, make sure that the "websocket-client" module is installed.
 
 **Attention:** Upon joining a room, you will be placed into spectator mode. **THIS PROGRAM DOES NOT--AND WILL NEVER--SUPPORT ACTUAL GAMEPLAY. TETR.IO has server-side anti-cheat. You have been warned.**
 
