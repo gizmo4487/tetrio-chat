@@ -34,7 +34,7 @@ else:
 tetrio_data = (requests.get(url="https://tetr.io/api/server/environment")).json()
 TETRIO_ENV = tetrio_data['signature']
 connectMessage = {"token": authToken,"handling": handling,"signature": TETRIO_ENV}
-sio = socketio.Client()
+sio = socketio.Client(reconnection=False)
 inRoom = False
 currentRoom = ""
 rooms = {}
