@@ -296,6 +296,7 @@ chatSendButton.grid(column=3, row=5, sticky="N")
 
 # Room join screen
 separator = ttk.Frame(roomframe,padding="4 4 4 4").grid(column=1, row=1, padx=215)
+roomPrefix = ttk.Label(roomframe, text="#").grid(column=1, row=8, sticky="E")
 joinlabel = ttk.Label(roomframe, text="Join Room", style='subtitle.TLabel').grid(column=2, row=1, sticky="N")
 roomlistbox = tk.Listbox(roomframe, height=10)
 roomlistbox.grid(column=2, row=2, sticky="N", pady=8)
